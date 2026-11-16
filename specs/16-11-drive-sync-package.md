@@ -18,13 +18,13 @@ The package is that feature, extracted whole: sign-in, the Drive calls, resumabl
 
 ## 2. Package shape
 
-- **Name:** `@arpitpatel/drive-sync`, published to npm, public. It holds no secrets: Google IDs come from each site at runtime.
+- **Name:** `@arpitpatel1771/drive-sync`, published to npm, public. It holds no secrets: Google IDs come from each site at runtime.
 - **Repo:** `~/Documents/code/personal/drive-sync`, its own git repository.
 - **Entry points:**
-  - `@arpitpatel/drive-sync`: the core. No React, no DOM beyond `fetch`, IndexedDB and the Google scripts.
-  - `@arpitpatel/drive-sync/react`: provider, hook and components. React is a peer dependency (≥ 18).
-  - `@arpitpatel/drive-sync/testing`: `FakeDrive`, a fake auth and an in-memory sync store, so sites can test their own integration.
-  - `@arpitpatel/drive-sync/styles.css`: default styling for the components.
+  - `@arpitpatel1771/drive-sync`: the core. No React, no DOM beyond `fetch`, IndexedDB and the Google scripts.
+  - `@arpitpatel1771/drive-sync/react`: provider, hook and components. React is a peer dependency (≥ 18).
+  - `@arpitpatel1771/drive-sync/testing`: `FakeDrive`, a fake auth and an in-memory sync store, so sites can test their own integration.
+  - `@arpitpatel1771/drive-sync/styles.css`: default styling for the components.
 - **Build:** TypeScript, ESM only, type declarations included, built with `tsup` (or Vite library mode). Tests with Vitest.
 - **No runtime dependencies** besides React as a peer.
 

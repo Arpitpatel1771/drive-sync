@@ -4,7 +4,7 @@ The parent folder's `CLAUDE.md` applies too (permission twice, no push or publis
 
 ## What this is
 
-`@arpitpatel/drive-sync`: Google Drive storage for the owner's sites, extracted from Taalmel's `src/drive/`. Design: `specs/16-11-drive-sync-package.md`. Plan: `plans/16-11-drive-sync-package-plan.md`. Remote: `git@github.com:Arpitpatel1771/drive-sync.git`, branch `main`.
+`@arpitpatel1771/drive-sync`: Google Drive storage for the owner's sites, extracted from Taalmel's `src/drive/`. Design: `specs/16-11-drive-sync-package.md`. Plan: `plans/16-11-drive-sync-package-plan.md`. Remote: `git@github.com:Arpitpatel1771/drive-sync.git`, branch `main`.
 
 ## Hard rules
 

@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Extract Taalmel's Google Drive sync into `@arpitpatel/drive-sync` (core + React + testing entry points), generalised over site-declared collections, then switch Taalmel to it with no change for existing users.
+**Goal:** Extract Taalmel's Google Drive sync into `@arpitpatel1771/drive-sync` (core + React + testing entry points), generalised over site-declared collections, then switch Taalmel to it with no change for existing users.
 
 **Architecture:** The core is Taalmel's `src/drive/` (api, auth, picker, syncDb, engine) with every Taalmel type replaced by a `namespace` and a list of `documents()` / `files()` collections plus optional settings. A `createDriveSync(config)` facade owns the engine and exposes the §6.2 API; the React entry wraps it in a provider, hook and themable components. Taalmel keeps its storage and UI look, and supplies a `driveConfig.ts` of collections.
 
@@ -12,7 +12,7 @@
 
 ## Global Constraints
 
-- Package name `@arpitpatel/drive-sync`; entry points `.`, `./react`, `./testing`, `./styles.css`; ESM only with `.d.ts`; no runtime dependencies; `react` and `react-dom` are optional peers `>=18`.
+- Package name `@arpitpatel1771/drive-sync`; entry points `.`, `./react`, `./testing`, `./styles.css`; ESM only with `.d.ts`; no runtime dependencies; `react` and `react-dom` are optional peers `>=18`.
 - Scopes `https://www.googleapis.com/auth/drive.file email profile`. Tokens in memory only; silent refresh within 2 min of expiry (`TOKEN_REFRESH_MARGIN_MS = 120000`); never a popup without a user gesture.
 - Flush debounce 2000 ms; backoff `min(2000 * 2^(failures-1), 300000)`; pull every 60 s while visible, on focus, on start and after a push; resumable chunk 8 MB (`8 * 1024 * 1024`).
 - appProperties keys are `${namespace}Kind` / `${namespace}Id`; IndexedDB `${namespace}-sync` (stores `items` keyPath `key`, `queue` keyPath `key` with index `enqueuedAt`, `meta`, version 1); profile cache `${namespace}.driveProfile`; dev fake flag `${namespace}.fakeDrive`.
@@ -209,7 +209,7 @@ test/  (one file per src unit; test site fixture in test/site.ts)
 
 **Files (Taalmel repo):**
 - Create: `src/driveConfig.ts`, `src/driveConfig.test.ts`
-- Modify: `package.json` (dependency `"@arpitpatel/drive-sync": "file:../drive-sync"`), `src/storage/changes.ts` consumers as needed, `src/ui/App.tsx`, `src/ui/screens/Settings.tsx`, `src/ui/screens/RecorderScreen.tsx`, `src/ui/sharing/SharingContext.tsx`
+- Modify: `package.json` (dependency `"@arpitpatel1771/drive-sync": "file:../drive-sync"`), `src/storage/changes.ts` consumers as needed, `src/ui/App.tsx`, `src/ui/screens/Settings.tsx`, `src/ui/screens/RecorderScreen.tsx`, `src/ui/sharing/SharingContext.tsx`
 - Replace: `src/drive/AccountChip.tsx` and `src/drive/DriveUi.tsx` become thin wrappers over the package components (Taalmel's look via `--drive-*` mapped to Taalmel tokens, `renderMenu` = Taalmel `Popover`, so phones get the BottomSheet)
 - Delete: `src/drive/api.ts`, `auth.ts`, `picker.ts`, `syncDb.ts`, `engine.ts`, `syncUi.ts`, `useDriveSync.tsx`, `config.ts`, `testing/`, and their tests (now in the package)
 
@@ -225,6 +225,6 @@ test/  (one file per src unit; test site fixture in test/site.ts)
 
 ### Task 12: Publish (gated)
 
-- [ ] **Step 1:** Ask the owner: "Publish @arpitpatel/drive-sync 0.1.0 to npm (public)?" Stop until yes.
+- [ ] **Step 1:** Ask the owner: "Publish @arpitpatel1771/drive-sync 0.1.0 to npm (public)?" Stop until yes.
 - [ ] **Step 2:** `npm publish --access public` from the package repo (the owner may need `npm login` first: suggest `! npm login`).
 - [ ] **Step 3:** In Taalmel, set the dependency to `"^0.1.0"`, `npm install`, re-run Task 11 Step 4. Committing and pushing either repo is asked separately.

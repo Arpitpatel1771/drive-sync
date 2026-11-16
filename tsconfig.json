@@ -11,9 +11,9 @@
     "noEmit": true,
     "types": ["node"],
     "paths": {
-      "@arpitpatel/drive-sync": ["./src/index.ts"],
-      "@arpitpatel/drive-sync/react": ["./src/react/index.ts"],
-      "@arpitpatel/drive-sync/testing": ["./src/testing/index.ts"]
+      "@arpitpatel1771/drive-sync": ["./src/index.ts"],
+      "@arpitpatel1771/drive-sync/react": ["./src/react/index.ts"],
+      "@arpitpatel1771/drive-sync/testing": ["./src/testing/index.ts"]
     }
   },
   "include": ["src", "test", "examples", "*.ts"]

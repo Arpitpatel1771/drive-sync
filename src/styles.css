@@ -1,4 +1,4 @@
-/* @arpitpatel/drive-sync styles.
+/* @arpitpatel1771/drive-sync styles.
    Colours, radius and font come only from nine theme variables: drive-accent, drive-surface, drive-surface-2,
    drive-text, drive-text-muted, drive-border, drive-danger, drive-radius and drive-font (each with the --drive- prefix).
    Nothing declares them: every use is var(--drive-x, default). A site sets them on :root or on any container

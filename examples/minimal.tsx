@@ -1,9 +1,9 @@
 // The README example as code: one documents collection (notes) and one files collection (recordings).
-// Typechecked by `tsc --noEmit` through the "@arpitpatel/drive-sync" path alias in tsconfig.json.
+// Typechecked by `tsc --noEmit` through the "@arpitpatel1771/drive-sync" path alias in tsconfig.json.
 
-import { createDriveSync, documents, files, type ChangeEvent, type DocumentStore, type FileStore } from "@arpitpatel/drive-sync";
-import { DriveAccountChip, DriveConflictDialog, DriveDeleteConfirm, DriveItemBadge, DriveStatusChip, DriveSyncProvider } from "@arpitpatel/drive-sync/react";
-import "@arpitpatel/drive-sync/styles.css";
+import { createDriveSync, documents, files, type ChangeEvent, type DocumentStore, type FileStore } from "@arpitpatel1771/drive-sync";
+import { DriveAccountChip, DriveConflictDialog, DriveDeleteConfirm, DriveItemBadge, DriveStatusChip, DriveSyncProvider } from "@arpitpatel1771/drive-sync/react";
+import "@arpitpatel1771/drive-sync/styles.css";
 
 interface Note {
   id: string;

@@ -1,15 +1,15 @@
-# @arpitpatel/drive-sync
+# @arpitpatel1771/drive-sync
 
 Offline-first Google Drive sync for small web apps, extracted from [Taalmel](https://taalmel.patel1771.com). Your app keeps its own local storage; this package mirrors it to the user's own Google Drive (`drive.file` scope, so it only sees files the app created or the user picked), resolves conflicts, and ships optional React components.
 
-- ESM only, no runtime dependencies. `react` and `react-dom` (`>=18`) are optional peers, needed only for `@arpitpatel/drive-sync/react`.
+- ESM only, no runtime dependencies. `react` and `react-dom` (`>=18`) are optional peers, needed only for `@arpitpatel1771/drive-sync/react`.
 - Tokens live in memory only. Sign-in popups open only from a user gesture; a returning user is resumed silently.
-- Entry points: `@arpitpatel/drive-sync` (core), `/react`, `/testing`, `/styles.css`.
+- Entry points: `@arpitpatel1771/drive-sync` (core), `/react`, `/testing`, `/styles.css`.
 
 ## Install
 
 ```sh
-npm install @arpitpatel/drive-sync
+npm install @arpitpatel1771/drive-sync
 ```
 
 ## Google Cloud setup (once per site)
@@ -29,7 +29,7 @@ Nothing here is secret (client id, API key and app id are public by design), but
 `examples/minimal.tsx` is a runnable version of this snippet, type-checked by `tsc`.
 
 ```ts
-import { createDriveSync, documents, files } from "@arpitpatel/drive-sync";
+import { createDriveSync, documents, files } from "@arpitpatel1771/drive-sync";
 
 export const drive = createDriveSync({
   google: {
@@ -133,8 +133,8 @@ Set `devFake: true` in the config, then in the browser console run `localStorage
 ## React
 
 ```tsx
-import { DriveSyncProvider, DriveStatusChip, DriveAccountChip, DriveConflictDialog, DriveDeleteConfirm, DriveItemBadge, useDriveSync } from "@arpitpatel/drive-sync/react";
-import "@arpitpatel/drive-sync/styles.css";
+import { DriveSyncProvider, DriveStatusChip, DriveAccountChip, DriveConflictDialog, DriveDeleteConfirm, DriveItemBadge, useDriveSync } from "@arpitpatel1771/drive-sync/react";
+import "@arpitpatel1771/drive-sync/styles.css";
 
 <DriveSyncProvider drive={drive} toast={(message, tone) => showToast(message, tone)}>
   <DriveStatusChip />
@@ -176,11 +176,11 @@ Every component takes `className`. Menus and dialogs can be replaced with the si
 
 ## Testing entry
 
-`@arpitpatel/drive-sync/testing` exports `FakeDrive` (an in-memory Drive API), `FakeAuth` (always signed in; set `needInteraction = true` to simulate an expired Google session) and `createMemorySyncStore()`. Inject them to test your own integration without Google:
+`@arpitpatel1771/drive-sync/testing` exports `FakeDrive` (an in-memory Drive API), `FakeAuth` (always signed in; set `needInteraction = true` to simulate an expired Google session) and `createMemorySyncStore()`. Inject them to test your own integration without Google:
 
 ```ts
-import { createDriveSync } from "@arpitpatel/drive-sync";
-import { FakeAuth, FakeDrive, createMemorySyncStore } from "@arpitpatel/drive-sync/testing";
+import { createDriveSync } from "@arpitpatel1771/drive-sync";
+import { FakeAuth, FakeDrive, createMemorySyncStore } from "@arpitpatel1771/drive-sync/testing";
 
 const drive = createDriveSync(config, {
   api: new FakeDrive({ namespace: config.namespace }),
