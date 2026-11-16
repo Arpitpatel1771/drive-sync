@@ -33,7 +33,9 @@ describe("built package", () => {
 
   it("npm pack contains dist, README and LICENSE only", () => {
     const out = JSON.parse(execSync("npm pack --dry-run --json", { stdio: ["ignore", "pipe", "ignore"] }).toString());
-    const paths: string[] = out[0].files.map((f: { path: string }) => f.path);
+    // npm 11 prints an array of results, npm 12 an object keyed by package name.
+    const result = Array.isArray(out) ? out[0] : Object.values(out)[0];
+    const paths: string[] = (result as { files: { path: string }[] }).files.map((f) => f.path);
     expect(paths).toContain("dist/index.js");
     expect(paths).toContain("README.md");
     for (const p of paths) {
