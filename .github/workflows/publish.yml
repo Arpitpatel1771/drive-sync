@@ -1,0 +1,40 @@
+# Publishes @arpitpatel1771/drive-sync to npm when a version tag (v1.2.3) is pushed.
+# Uses npm trusted publishing (OIDC): no npm token is stored anywhere. The npm package's
+# trusted publisher settings must name this repo and this file (publish.yml).
+name: Publish to npm
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write # lets npm verify this workflow (trusted publishing + provenance)
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      # Trusted publishing needs npm 11.5.1 or newer.
+      - run: npm install -g npm@latest
+
+      - name: Tag matches package.json version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(node -p "require('./package.json').version")"
+          if [ "$tag" != "$version" ]; then
+            echo "Tag v$tag does not match package.json version $version" >&2
+            exit 1
+          fi
+
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx vitest run # includes the build and package-contents checks
+      - run: npm publish --access public
