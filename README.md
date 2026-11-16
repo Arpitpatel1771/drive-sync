@@ -1,6 +1,20 @@
 # @arpitpatel1771/drive-sync
 
-Offline-first Google Drive sync for small web apps, extracted from [Taalmel](https://taalmel.patel1771.com). Your app keeps its own local storage; this package mirrors it to the user's own Google Drive (`drive.file` scope, so it only sees files the app created or the user picked), resolves conflicts, and ships optional React components.
+Let the people using your web app keep their data in **their own Google Drive**, with no backend, database or server of yours.
+
+Your app keeps saving to its local storage (IndexedDB, localStorage, anything) and stays fast and usable offline. Once a user connects their Google account, this package syncs that data to a folder in their Drive in the background, and pulls in changes made on their other devices. You describe what to sync. The package handles sign-in, uploads, retries and conflicts.
+
+**What you get**
+
+- **Two-way sync:** local edits are pushed after a short pause and Drive is checked for changes every minute; every device ends up with the same data.
+- **Text items and media files:** sync items that are one readable file each (notes, songs, documents) and large files such as audio, video or images. Large files can stay in Drive only and be downloaded to a device on demand.
+- **Conflicts and deletes handled:** when the same item changes on two devices, keep this device's version, Drive's or both, or let the newest win automatically. Deletions made on another device are confirmed before they happen here.
+- **Survives bad connections:** resumable uploads for large files, automatic retries with backoff, and an offline state that catches up when the network returns.
+- **Private by design:** the `drive.file` scope means your app sees only the files it created or the user explicitly picked, never the rest of their Drive. Tokens stay in memory; no client secret is needed.
+- **Optional React UI:** account chip, sync status, conflict dialog, delete confirmation, settings panel and per-item badges, themable with CSS variables. Or use the hook and build your own.
+- **Import from Drive:** users can pick existing files in their Drive and bring them into your app.
+
+**Details**
 
 - ESM only, no runtime dependencies. `react` and `react-dom` (`>=18`) are optional peers, needed only for `@arpitpatel1771/drive-sync/react`.
 - Tokens live in memory only. Sign-in popups open only from a user gesture; a returning user is resumed silently.
@@ -124,7 +138,7 @@ Pass `settings: { load, save, onChange, deviceLocal }` to sync site settings as 
 
 ### Migrating a site
 
-`legacyMediaFileId(item)` on a files collection is for sites whose store already kept the Drive media file id on the item (Taalmel's `clip.driveFileId`). It runs once per device and copies the id into the engine's own sync record, so nothing is re-uploaded. The package also keeps Taalmel's exact on-Drive format (folder ids, appProperties, `kind:id` queue keys, IndexedDB layout) so existing Taalmel data keeps working; for a new site choose any `namespace` and ids you like.
+`legacyMediaFileId(item)` on a files collection is only for apps moving to this package from their own Drive sync code that stored the Drive media file id on the item itself (for example `item.driveFileId`). It runs once per device and copies the id into the package's sync record, so nothing is uploaded again. A new app doesn't need it: choose any `namespace`, kinds and folder ids you like.
 
 ### Dev fake drive
 
