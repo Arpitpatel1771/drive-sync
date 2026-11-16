@@ -1,4 +1,4 @@
-export const VERSION = "0.1.1";
+export const VERSION = "0.1.2";
 
 export { createDriveSync, type DriveCollectionInfo, type DriveSync, type DriveSyncDeps, type PickFiles } from "./createDriveSync";
 export {

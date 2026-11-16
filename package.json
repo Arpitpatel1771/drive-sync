@@ -1,6 +1,6 @@
 {
   "name": "@arpitpatel1771/drive-sync",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Sync your web app's local data to each user's own Google Drive: no backend, offline-first, conflicts handled, optional React UI.",
   "license": "MIT",
   "repository": {
